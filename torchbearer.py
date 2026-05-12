@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: Amina Benothmane
+Student ID:   132110911
 
 INSTRUCTIONS
 ------------
@@ -25,16 +25,17 @@ import heapq
 # =============================================================================
 
 def explain_problem():
-    """
-    Returns
-    -------
-    str
-        Your Part 1 README answers, written as a string.
-        Must match what you wrote in README Part 1.
 
-    TODO
+    TODO = """- **Why a single shortest-path run from S is not enough:**
+  - A single shortest-path run using the Greedy strategy to make decisions is not enough as it only accounts for the cost locally between nodes and not the overall cost of the path. 
+
+- **What decision remains after all inter-location costs are known:**
+  - The structual decision that remains after all inter-location costs are known is what is the shortest path to take to the goal node T. 
+
+- **Why this requires a search over orders (one sentence):**
+  - A search over orders will calculate the best possible shortest path over all possibilities rather than deciding at each node individually. 
     """
-    return "TODO"
+    return TODO
 
 
 # =============================================================================

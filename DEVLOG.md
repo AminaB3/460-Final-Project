@@ -1,7 +1,7 @@
 # Development Log – The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Amina Benothmane
+**Student ID:** 132110911
 
 > Instructions: Write at least four dated entries. Required entry types are marked below.
 > Two to five sentences per entry is sufficient. Write entries as you go, not all in one
@@ -49,7 +49,7 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
+| Part 1: Problem Analysis |15 minutes|
 | Part 2: Precomputation Design | |
 | Part 3: Algorithm Correctness | |
 | Part 4: Search Design | |
