@@ -18,6 +18,9 @@ Submit this file as: torchbearer.py
 """
 
 import heapq
+#from os import uname
+#I'm using python on windows
+from platform import uname
 
 
 # =============================================================================
@@ -27,7 +30,7 @@ import heapq
 def explain_problem():
 
     TODO = """- **Why a single shortest-path run from S is not enough:**
-  - A single shortest-path run using the Greedy strategy to make decisions is not enough as it only accounts for the cost locally between nodes and not the overall cost of the path. 
+  - A single shortest-path run to make decisions is not enough as it only accounts for the cost locally between nodes and not the overall cost of the path. 
 
 - **What decision remains after all inter-location costs are known:**
   - The structual decision that remains after all inter-location costs are known is what is the shortest path to take to the goal node T. 
@@ -57,8 +60,12 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
-
+    #List of spawn and relics
+    if spawn not in relics: 
+        sources = [spawn] + relics
+    else:
+        sources =  relics
+    return sources
 
 def run_dijkstra(graph, source):
     """
@@ -76,7 +83,42 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+    min_graph = dict()
+    for key in graph: #Setting all nodes to an initial value of infinity unless it is the source node
+        if key == source:
+            min_graph[key] = 0
+        else: 
+            min_graph[key] = float('inf')
+
+    min_heap = [(min_graph[source], source)] #Initialize min_heap
+    heapq.heapify(min_heap) #Push source to min_heap
+
+    while min_heap: #While there are items in the min heap
+        weight, node = heapq.heappop(min_heap) #Pop node out of min_heap
+        if weight > min_graph[node]:
+            continue
+        for neighbors, n_weights in graph[node]:
+            if weight + n_weights < min_graph[neighbors]:
+                min_graph[neighbors] = weight + n_weights
+                heapq.heappush(min_heap, (min_graph[neighbors], neighbors))
+
+
+    
+    return min_graph
+
+#Debugging lines for run_dijkstra :D
+"""
+import torchbearer as tb
+
+g = {
+    'S': [('B', 1), ('C', 2), ('D', 2)],
+    'B': [('D', 1), ('T', 1)],
+    'C': [('B', 1), ('T', 1)],
+    'D': [('B', 1), ('C', 1)],
+    'T': [],
+}
+print(tb.run_dijkstra(g, 'S'))
+"""
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -96,8 +138,21 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
-
+    dist_table = dict()
+    for u in select_sources(spawn, relics, exit_node):
+        dist_table[u] = run_dijkstra(graph, u)
+    return dist_table
+'''
+import torchbearer as tb
+g = {
+    'S': [('B', 1), ('C', 2), ('D', 2)],
+    'B': [('D', 1), ('T', 1)],
+    'C': [('B', 1), ('T', 1)],
+    'D': [('B', 1), ('C', 1)],
+    'T': [],
+}
+print(tb.precompute_distances(g, 'S', ['B', 'C', 'D'], 'T'))
+'''
 
 # =============================================================================
 # PART 3

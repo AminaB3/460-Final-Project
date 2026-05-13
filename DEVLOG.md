@@ -10,22 +10,24 @@
 
 ---
 
-## Entry 1 – [Date]: Initial Plan
+## Entry 1 – [5/11/2026]: Initial Plan
 
 > Required. Write this before writing any code. Describe your plan: what you will
 > implement first, what parts you expect to be difficult, and how you plan to test.
 
-_Your entry here._
+I plan to implement the data structures that will hold the visited and non-visited nodes first, and then the algorithm that will traverse the nodes. I plan to keep
+track of minimum cost as I traverse the nodes, visited nodes, unvisited nodes, and previous nodes in the algorithm to deduce the best path. I am anticipating that the 
+part that will be most difficult is figuring out how I am going to keep track of previous nodes so that I can backtrack once they are all visited. I plan to test by printing
+output at different stages to keep track of the operations.
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [5/12/2026]: [Short description]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
-
+I had a difficult time with run_dijkstra's. At first I misunderstood the instructions and thought I just had to return the minimum distances for the nearest nodes and mark unreachable nodes from the source node as infinity. I then figured out it was to be executed like how we did in previous assignments with a minheap or priority queue. I tested using the IDE debugger and a hypothetical graph to make sure the method worked as intended once I figured things out. 
 ---
 
 ## Entry 3 – [Date]: [Short description]
@@ -50,7 +52,7 @@ _Your entry here._
 | Part | Estimated Hours |
 |---|---|
 | Part 1: Problem Analysis |15 minutes|
-| Part 2: Precomputation Design | |
+| Part 2: Precomputation Design |5 hours|
 | Part 3: Algorithm Correctness | |
 | Part 4: Search Design | |
 | Part 5: State and Search Space | |

@@ -1,29 +1,20 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** Amina Benothmane
+**Student ID:** 132110911
 **Course:** CS 460 – Algorithms | Spring 2026
-
-> This README is your project documentation. Write it the way a developer would document
-> their design decisions , bullet points, brief justifications, and concrete examples where
-> required. You are not writing an essay. You are explaining what you built and why you built
-> it that way. Delete all blockquotes like this one before submitting.
-
----
 
 ## Part 1: Problem Analysis
 
-> Document why this problem is not just a shortest-path problem. Three bullet points, one
-> per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  - A single shortest-path run to make decisions is not enough as it only accounts for the cost locally between nodes and not the overall cost of the path. 
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  - The structual decision that remains after all inter-location costs are known is what is the shortest path to take to the goal node T. 
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  - A search over orders will calculate the best possible shortest path over all possibilities rather than deciding at each node individually. 
 
 ---
 
@@ -31,33 +22,29 @@
 
 ### Part 2a: Source Selection
 
-> List the source node types as a bullet list. For each, one-line reason.
-
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| S | The torchbearer begins at this fixed entrance node where the Dijkstra's Algorithm is initially executed|
+| M (B, C, D) | The torchbearer cannot go directly to the goal node, and must execute Dijkstra's algorthm between relics to eventually reach T |
 
 ### Part 2b: Distance Storage
 
-> Fill in the table. No prose required.
-
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | dungeon_map |
+| What the keys represent | Each key represents a node, ex. the key would be assigned to 'S' |
+| What the values represent | list[tuple[node, int]] represents a list of neighboring nodes and their costs from the current node|
+| Lookup time complexity | O(n)|
+| Why O(1) lookup is possible | The usage of a dictionary allows direct mapping to the node's neighboring cost through the key|
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** The number of Dijkstra's runs is equal to the number of sources k 
+- **Cost per run:** (n+m)log(m)
+- **Total complexity:** k * (n+m)log(m)
+- **Justification (one line):** The time complexity for each call to run_dijkstra is complexity (n+m)log(m) multiplied by the number of runs we make.
 
 ---
 
