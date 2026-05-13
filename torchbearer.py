@@ -142,17 +142,7 @@ def precompute_distances(graph, spawn, relics, exit_node):
     for u in select_sources(spawn, relics, exit_node):
         dist_table[u] = run_dijkstra(graph, u)
     return dist_table
-'''
-import torchbearer as tb
-g = {
-    'S': [('B', 1), ('C', 2), ('D', 2)],
-    'B': [('D', 1), ('T', 1)],
-    'C': [('B', 1), ('T', 1)],
-    'D': [('B', 1), ('C', 1)],
-    'T': [],
-}
-print(tb.precompute_distances(g, 'S', ['B', 'C', 'D'], 'T'))
-'''
+
 
 # =============================================================================
 # PART 3

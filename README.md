@@ -59,29 +59,32 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  -The distance computed so far from the source node through nodes in S is the finalized minimum distance.
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  -The distance computed so far from the source node through nodes in S is the known minimum distance.
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  -The source node is initialized to zero, while all other nodes are initialized to infinity. Zero is smaller than infinity, and is therefore the
+  min distance before iteration 1, therefore the invariant holds.
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  -The min-dist node is always correct because up until that point, the smaller edgeweights were chosen to computer the minimum distance from source.
+  -Any other node added to the computation will only increase the minimum distance, especially since all nodes are non-negative.
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  -The invariant guarantees the minimum distance when the algorithm ends.
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+-The torchbearer wants to make its way to the goal as quickly as possible before the torch runs out. Knowing the correct minimum distance will stop it
+from making costly wrong turns, and make it in time to the goal. 
 
 ---
 
