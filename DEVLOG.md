@@ -22,7 +22,7 @@ output at different stages to keep track of the operations.
 
 ---
 
-## Entry 2 – [5/12/2026]: [Short description]
+## Entry 2 – [5/12/2026]: [Wrong assumption on Part Two]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
@@ -30,9 +30,9 @@ output at different stages to keep track of the operations.
 I had a difficult time with run_dijkstra's. At first I misunderstood the instructions and thought I just had to return the minimum distances for the nearest nodes and mark unreachable nodes from the source node as infinity. I then figured out it was to be executed like how we did in previous assignments with a minheap or priority queue. I tested using the IDE debugger and a hypothetical graph to make sure the method worked as intended once I figured things out. 
 ---
 
-## Entry 3 – [Date]: [Short description]
+## Entry 3 – [5-13-2026]: [Part 4 is finished so far]
 
-_Your entry here._
+Writing out the precompute_distance method went smoother than I expected. Part three and four were completed and helped exercise my understanding of the topic. 
 
 ---
 
@@ -53,10 +53,10 @@ _Your entry here._
 |---|---|
 | Part 1: Problem Analysis |15 minutes|
 | Part 2: Precomputation Design |5 hours|
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
+| Part 3: Algorithm Correctness |20 minutes|
+| Part 4: Search Design | 15 minutes|
+| Part 5: State and Search Space |5 hours (Accounts for part 5+6, I did them together since they both were in _explore and find_optimal_route|
+| Part 6: Pruning |5 hours|
 | Part 7: Implementation | |
-| README and DEVLOG writing | |
+| README and DEVLOG writing | 15 minutes|
 | **Total** | |

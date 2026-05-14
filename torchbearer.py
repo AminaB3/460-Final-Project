@@ -90,8 +90,8 @@ def run_dijkstra(graph, source):
         else: 
             min_graph[key] = float('inf')
 
-    min_heap = [(min_graph[source], source)] #Initialize min_heap
-    heapq.heapify(min_heap) #Push source to min_heap
+    min_heap = [(min_graph[source], source)] #Initialize min_heap and add source
+    heapq.heapify(min_heap) #Heapify the min_heap
 
     while min_heap: #While there are items in the min heap
         weight, node = heapq.heappop(min_heap) #Pop node out of min_heap
@@ -106,7 +106,7 @@ def run_dijkstra(graph, source):
     
     return min_graph
 
-#Debugging lines for run_dijkstra :D
+#Debugging lines for run_dijkstra 
 """
 import torchbearer as tb
 
@@ -230,10 +230,15 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    best: [float, list[str]] = [float("inf"), []]
+    best = [float("inf"), []]
     relics_remaining = list(relics)
     relics_visited_order = []
     cost_so_far = 0
+
+    if spawn in relics_remaining:
+        relics_remaining.remove(spawn)
+        relics_visited_order.append(spawn)
+
     #I chose a list to hold the remaining relics 
     _explore(dist_table, spawn, relics_remaining, relics_visited_order, cost_so_far, exit_node, best)
     #Returns (float('inf'), []) if no valid route exists.
@@ -277,17 +282,21 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     #the optimal solution
     if cost_so_far >= best[0]: #If the cost at this point is greater than or equal to the best cost, we want to disregard it
         return
+
+
     if current_loc not in dist_table: #If it does not exist in the dist_table
         return
-    #Base cases
-    if current_loc == exit_node and len(relics_remaining) == 0 #and cost_so_far < best[0]: #If current location is the exit node, return best cost and relics visited order
-        cost_to_exit = dist_table[current_loc][exit_node]
+
+    if len(relics_remaining) == 0 : #If no relics are left, calculate cost to the exit_node
+        cost_to_exit = dist_table[current_loc].get(exit_node, float('inf')) 
+
         if cost_so_far + cost_to_exit < best[0]:
             best[0] = cost_so_far + cost_to_exit
-            best[1] = list(relics_visited_order) + [exit_node]
+            if current_loc == exit_node:
+                best[1] = list(relics_visited_order) 
+            else:
+                best[1] = list(relics_visited_order) + [exit_node]
         return
-
-
 
  #Recursive case
     for nxt, cost in dist_table[current_loc].items():
@@ -321,7 +330,10 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    #Implementation 
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+    cost, order = find_optimal_route(dist_table, spawn, relics, exit_node)
+    return cost, order
 
 
 # =============================================================================
