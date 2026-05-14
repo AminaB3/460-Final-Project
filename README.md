@@ -117,9 +117,9 @@ must traverse through to reach the goal before the torch runs out.
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_loc | String | Represents the current node |
+| Relics already collected | relics_visited_order | list | List of the relics visited in the order they were visited |
+| Fuel cost so far | cost_so_far | Int | Intilized to zero since spawn starts with a starting cost of zero |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -127,18 +127,16 @@ must traverse through to reach the goal before the torch runs out.
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | List |
+| Operation: check if relic already collected | Time complexity: O(n)|
+| Operation: mark a relic as collected | Time complexity: O(1)|
+| Operation: unmark a relic (backtrack) | Time complexity: O(1)|
+| Why this structure fits | A collection where nodes are listed in the order visited that is mutable works well with the algorithm |
 
 ### Part 5c: Worst-Case Search Space
 
-> Two bullets.
-
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** -K!
+- **Why:** K! represents all of the different ways the relics K = |M| can be arraged in the number of orders considered.
 
 ---
 

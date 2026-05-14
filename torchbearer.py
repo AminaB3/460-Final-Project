@@ -230,10 +230,16 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    optimal_route = (0, [])
-    for node in select_sources(spawn, relics, exit_node):
-        optimal_route[node] = min(dist_table[node])
-    return optimal_route
+    best: [float, list[str]] = [float("inf"), []]
+    relics_remaining = list(relics)
+    relics_visited_order = []
+    cost_so_far = 0
+    #I chose a list to hold the remaining relics 
+    _explore(dist_table, spawn, relics_remaining, relics_visited_order, cost_so_far, exit_node, best)
+    #Returns (float('inf'), []) if no valid route exists.
+    if best[0] == float("inf"):
+        return (float('inf'), [])
+    return best[0], best[1]
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -265,8 +271,34 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    #Pruning condition
 
+    #The optimal solution is the one that will contain the lowest cost. Pruning the cost that is greater than the recorded best is safe and will not skip
+    #the optimal solution
+    if cost_so_far >= best[0]: #If the cost at this point is greater than or equal to the best cost, we want to disregard it
+        return
+    if current_loc not in dist_table: #If it does not exist in the dist_table
+        return
+    #Base cases
+    if current_loc == exit_node and len(relics_remaining) == 0 #and cost_so_far < best[0]: #If current location is the exit node, return best cost and relics visited order
+        cost_to_exit = dist_table[current_loc][exit_node]
+        if cost_so_far + cost_to_exit < best[0]:
+            best[0] = cost_so_far + cost_to_exit
+            best[1] = list(relics_visited_order) + [exit_node]
+        return
+
+
+
+ #Recursive case
+    for nxt, cost in dist_table[current_loc].items():
+        if nxt == exit_node or nxt not in relics_remaining or cost == float('inf'):
+            continue
+        relics_visited_order.append(nxt)
+        relics_remaining.remove(nxt)
+        _explore(dist_table, nxt, relics_remaining, relics_visited_order, cost_so_far + cost, exit_node, best)
+        #Backtracking
+        relics_remaining.append(nxt)
+        relics_visited_order.pop()
 
 # =============================================================================
 # PIPELINE
