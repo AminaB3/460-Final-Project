@@ -230,10 +230,10 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-
+    optimal_route = (0, [])
     for node in select_sources(spawn, relics, exit_node):
         optimal_route[node] = min(dist_table[node])
-    pass
+    return optimal_route
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,

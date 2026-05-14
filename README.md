@@ -92,20 +92,19 @@ from making costly wrong turns, and make it in time to the goal.
 
 ### Why Greedy Fails
 
-> State the failure mode. Then give a concrete counter-example using specific node names
-> or costs (you may use the illustration example from the spec). Three to five bullets.
+- **The failure mode:** -Greedy is the failure mode. 
+- **Counter-example setup:** -A counter example is a hypothetical path A -> B with a cost of one, A-> C with a cost of 5, B->D with a cost of 30, and C->D with a cost of 4. D is the goal node.
+- **What greedy picks:** -The greedy algorithm would choose the smallest path from A to node B, with a cost of one. When it goes from B to D however, it racks up a cost of 31. 
+- **What optimal picks:** The optimal path would choose A to C with a cost of five, so that it can take the route from C to D with a cost of 4. The overall cost would be 9. 
+- **Why greedy loses:** It fails to account for future paths/costs and only weighs in on the cost of nodes within it's immediate vicinity. It chose A to B because it was the shortest path, when
+it is overall the worst option to choose.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
 
 ### What the Algorithm Must Explore
 
-> One bullet. Must use the word "order."
 
-- _Your answer here._
+- The algorithm must explore the entirety of all possible nodes from the source to determine the most optimal path. From there it will return the order of nodes the torchbearer
+must traverse through to reach the goal before the torch runs out. 
 
 ---
 
