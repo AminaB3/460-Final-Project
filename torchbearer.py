@@ -155,10 +155,29 @@ def dijkstra_invariant_check():
     str
         Your Part 3 README answers, written as a string.
         Must match what you wrote in README Part 3.
-
-    TODO
     """
-    return "TODO"
+    TODO = '''
+    - **For nodes already finalized (in S):**
+    -The distance computed so far from the source node through nodes in S is the finalized minimum distance.
+
+    - **For nodes not yet finalized (not in S):**
+    -The distance computed so far from the source node through nodes in S is the known minimum distance.
+    
+    - **Initialization : why the invariant holds before iteration 1:**
+    -The source node is initialized to zero, while all other nodes are initialized to infinity. Zero is smaller than infinity, and is therefore the
+    min distance before iteration 1, therefore the invariant holds.
+
+    - **Maintenance : why finalizing the min-dist node is always correct:**
+    -The min-dist node is always correct because up until that point, the smaller edgeweights were chosen to computer the minimum distance from source.
+    -Any other node added to the computation will only increase the minimum distance, especially since all nodes are non-negative.
+
+    - **Termination : what the invariant guarantees when the algorithm ends:**
+    -The invariant guarantees the minimum distance when the algorithm ends.
+    -The torchbearer wants to make its way to the goal as quickly as possible before the torch runs out. Knowing the correct minimum distance will stop it
+    from making costly wrong turns, and make it in time to the goal. 
+    '''
+
+    return TODO
 
 
 # =============================================================================
@@ -172,10 +191,19 @@ def explain_search():
     str
         Your Part 4 README answers, written as a string.
         Must match what you wrote in README Part 4.
-
-    TODO
     """
-    return "TODO"
+    TODO = """
+        - **The failure mode:** -Greedy is the failure mode. 
+        - **Counter-example setup:** -A counter example is a hypothetical path A -> B with a cost of one, A-> C with a cost of 5, B->D with a cost of 30, and C->D with a cost of 4. D is the goal node.
+        - **What greedy picks:** -The greedy algorithm would choose the smallest path from A to node B, with a cost of one. When it goes from B to D however, it racks up a cost of 31. 
+        - **What optimal picks:** The optimal path would choose A to C with a cost of five, so that it can take the route from C to D with a cost of 4. The overall cost would be 9. 
+        - **Why greedy loses:** It fails to account for future paths/costs and only weighs in on the cost of nodes within it's immediate vicinity. It chose A to B because it was the shortest path, when
+        it is overall the worst option to choose.
+        - The algorithm must explore the entirety of all possible nodes from the source to determine the most optimal path. From there it will return the order of nodes the torchbearer
+        must traverse through to reach the goal before the torch runs out. 
+    """
+   
+    return TODO
 
 
 # =============================================================================
@@ -202,6 +230,9 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
+
+    for node in select_sources(spawn, relics, exit_node):
+        optimal_route[node] = min(dist_table[node])
     pass
 
 
