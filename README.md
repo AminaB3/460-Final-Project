@@ -39,7 +39,6 @@
 
 ### Part 2c: Precomputation Complexity
 
-> State the total complexity and show the arithmetic. Two to three lines max.
 
 - **Number of Dijkstra runs:** The number of Dijkstra's runs is equal to the number of sources k 
 - **Cost per run:** (n+m)log(m)
@@ -50,13 +49,8 @@
 
 ## Part 3: Algorithm Correctness
 
-> Document your understanding of why Dijkstra produces correct distances.
-> Bullet points and short sentences throughout. No paragraphs.
-
 ### Part 3a: What the Invariant Means
 
-> Two bullets: one for finalized nodes, one for non-finalized nodes.
-> Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
   -The distance computed so far from the source node through nodes in S is the finalized minimum distance.
@@ -65,8 +59,6 @@
   -The distance computed so far from the source node through nodes in S is the known minimum distance.
 
 ### Part 3b: Why Each Phase Holds
-
-> One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
   -The source node is initialized to zero, while all other nodes are initialized to infinity. Zero is smaller than infinity, and is therefore the
@@ -80,8 +72,6 @@
   -The invariant guarantees the minimum distance when the algorithm ends.
 
 ### Part 3c: Why This Matters for the Route Planner
-
-> One sentence connecting correct distances to correct routing decisions.
 
 -The torchbearer wants to make its way to the goal as quickly as possible before the torch runs out. Knowing the correct minimum distance will stop it
 from making costly wrong turns, and make it in time to the goal. 
@@ -112,8 +102,6 @@ must traverse through to reach the goal before the torch runs out.
 
 ### Part 5a: State Representation
 
-> Document the three components of your search state as a table.
-> Variable names here must match exactly what you use in torchbearer.py.
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
@@ -122,8 +110,6 @@ must traverse through to reach the goal before the torch runs out.
 | Fuel cost so far | cost_so_far | Int | Intilized to zero since spawn starts with a starting cost of zero |
 
 ### Part 5b: Data Structure for Visited Relics
-
-> Fill in the table.
 
 | Property | Your answer |
 |---|---|
@@ -144,30 +130,23 @@ must traverse through to reach the goal before the torch runs out.
 
 ### Part 6a: Best-So-Far Tracking
 
-> Three bullets.
-
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** The _explore method keeps track of the shortest distance stored in best.
+- **When it is used:** The cost stored in best[0] is compared to cost_so_far.
+- **What it allows the algorithm to skip:** It allows the algorithm to skip when the cost_so_far is greater than or equal to the best cost.
 
 ### Part 6b: Lower Bound Estimation
 
-> Three bullets.
-
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** -At the current state, the current_node, cost so far, visited relics in order, relics yet to be visited, and the best route so far and its cost.
+- **What the lower bound accounts for:** The lower bound accounts for the minimum cost to reach the current node.
+- **Why it never overestimates:** It never overestimates because all nodes are non-negative. The current_node is incapable of execeeding the cost it would take to get to the goal/exit node. 
 
 ### Part 6c: Pruning Correctness
 
-> One to two bullets. Explain why pruning is safe.
-
-- _Your answer here._
+- Pruning is safe because there are no relics that will lower the cost to beat the best so far. All relics have a positive integer cost.
 
 ---
 
 ## References
 
-> Bullet list. If none beyond lecture notes, write that.
-
-- _Your references here._
+- I used notes from lecture and this YouTube video that animates the Dijkstra's process to help better visualize it
+-https://www.youtube.com/watch?v=bZkzH5x0SKU
